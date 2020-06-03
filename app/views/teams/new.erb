@@ -1,0 +1,17 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<h1>Create a New Team</h1>
+
+<form action="/teams" method="post">
+  <label for="name">Name</label><br>
+  <input type="text" id="name" name="team[name]"><br><br>
+  <label for="sport">Sport Name</label><br>
+  <input type="text" id="sport" name="sport[name]"><br><br>
+  <% Seasons.all.each do |season| %>
+    <input id="<%= season.name %>" type="dropdown" name="season[]" value="<%= season.id %>">"<%= season.name %>"</input><br>
+  <% end %><br><br>
+
+  <input type="submit" value="Create Team">
+</form>
