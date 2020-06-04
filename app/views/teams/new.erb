@@ -1,17 +1,19 @@
 <h1>Create a New Team</h1>
 
 <form action="/teams" method="post">
+  <p>
+    <select>
+    <% Sport.all.each do |sport| %>
+      <option name="team[sport]" value="<%= sport.id %>"><%= sport.name %> - <%= sport.gender %></option>
+    <% end %>
+    </select>
+  </p>
+  <p>
   <select>
-  <% Sport.all.each do |sport| %>
-    <option value="<%= sport.id %>"><%= sport.name %></option><br>
-  <% end %><br><br>
-  </select><br><br>
-  <input id="Men's" type="radio" name="sports[gender]" value="Men's">Men's</input><br><br>
-  <input id="Women's" type="radio" name="sports[gender]" value="Women's">Women's</input><br><br>
-  <select>
-  <% Season.all.each do |season| %>
-    <option value="<%= season.id %>"><%= season.name %></option><br>
-  <% end %><br><br>
-  </select><br><br>
+    <% Season.all.each do |season| %>
+      <option name="team[season_id]" value="<%= season.id %>"><%= season.name %></option>
+    <% end %>
+  </select>
+  </p>
   <input type="submit" value="Create Team">
 </form>
