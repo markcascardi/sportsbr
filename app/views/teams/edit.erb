@@ -1,3 +1,18 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
+<h1>Edit <%= @team %></h1>
+
+<form action="/teams/<%= @team.id %>" method="post">
+<input id="hidden" type="hidden" name="_method" value="patch">
+  <select>
+  <% Sport.all.each do |sport| %>
+    <option value="<%= sport.id %>"><%= sport.name %></option><br>
+  <% end %><br><br>
+  </select><br><br>
+  <input id="Men's" type="radio" name="sports[gender]" value="Men's">Men's</input><br><br>
+  <input id="Women's" type="radio" name="sports[gender]" value="Women's">Women's</input><br><br>
+  <select>
+  <% Season.all.each do |season| %>
+    <option value="<%= season.id %>"><%= season.name %></option><br>
+  <% end %><br><br>
+  </select><br><br>
+  <input type="submit" value="Edit <%= @team %>">
+</form>

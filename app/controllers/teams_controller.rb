@@ -1,3 +1,5 @@
+require 'rack-flash'
+
 class TeamsController < ApplicationController
 
   get '/teams' do
@@ -12,11 +14,11 @@ class TeamsController < ApplicationController
 
   post '/teams' do
     @team = Team.new(params[:team])
-    # @team.artist = Artist.find_or_create_by(name: params[:artist][:name])
-    # @team.genre_ids = params[:genres]
+    @team.sport_id = Sport.find_or_create_by(id: params[:sport][:id])
+    @team.season_id = params[:season][:id]
     @team.save
-
-    flash[:message] = "Team successfully created."
+    binding.pry
+    # flash[:message] = "Team successfully created."
     redirect "/teams/#{@team.id}"
   end
 
@@ -39,7 +41,7 @@ class TeamsController < ApplicationController
     # @team.genre_ids = params[:genres]
     @team.save
 
-    flash[:message] = "Successfully updated team."
+    # flash[:message] = "Successfully updated team."
     redirect "/teams/#{@team.id}"
   end
 end

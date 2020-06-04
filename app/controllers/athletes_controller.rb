@@ -1,3 +1,5 @@
+require 'rack-flash'
+
 class AthletesController < ApplicationController
 
   get '/athletes' do
