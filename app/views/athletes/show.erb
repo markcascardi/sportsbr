@@ -1,6 +1,6 @@
 <h1>Home Page for <%= @athlete.firstname %>   <%= @athlete.lastname %></h1>
 <ul>
-  <li><%= @athlete.team %> - <%= @athlete.year %> - No. <%= @athlete.number %></li>
+  <li><a href="/teams/<%= @athlete.team.id %>"><%= @athlete.team %></a> - <%= @athlete.year %> - No. <%= @athlete.number %></li>
   <li>Date of Birth: <%= @athlete.birthdate %></li>
   <li>Height: <%= @athlete.height %></li>
   <li>Weight: <%= @athlete.weight %></li>

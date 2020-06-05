@@ -29,4 +29,10 @@ class SessionsController < ApplicationController
     # flash[:message] = "Welcome to Sports <br>"
     redirect to "/login"
   end
+
+  get '/sessions/logout' do
+    session.clear
+    redirect '/teams'
+  end
+
 end

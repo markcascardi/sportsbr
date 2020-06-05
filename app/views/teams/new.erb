@@ -2,18 +2,22 @@
 
 <form action="/teams" method="post">
   <p>
-    <select>
-    <% Sport.all.each do |sport| %>
-      <option name="team[sport]" value="<%= sport.id %>"><%= sport.name %> - <%= sport.gender %></option>
-    <% end %>
+    <label for="team_sport_id">Choose a Sport</label>
+    <select id="team_sport_id" name="team[sport_id]">
+      <% Sport.all.each do |sport| %>
+        <option value="<%= sport.id %>"><%= sport %></option>
+      <% end %>
     </select>
   </p>
+
   <p>
-  <select>
-    <% Season.all.each do |season| %>
-      <option name="team[season_id]" value="<%= season.id %>"><%= season.name %></option>
-    <% end %>
-  </select>
+    <label for="team_season_id">Choose a Season</label>
+    <select id="team_season_id" name="team[season_id]">
+      <% Season.all.each do |season| %>
+        <option value="<%= season.id %>"><%= season %></option>
+      <% end %>
+    </select>
   </p>
+
   <input type="submit" value="Create Team">
 </form>

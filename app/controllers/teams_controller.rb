@@ -1,6 +1,7 @@
 require 'rack-flash'
 
 class TeamsController < ApplicationController
+  use Rack::Flash
 
   get '/teams' do
     @teams = Team.all
@@ -14,11 +15,9 @@ class TeamsController < ApplicationController
 
   post '/teams' do
     @team = Team.new(params[:team])
-    @team.sport_id = Sport.find_or_create_by(id: params[:sport][:id])
-    @team.season_id = params[:season][:id]
     @team.save
-    binding.pry
-    # flash[:message] = "Team successfully created."
+
+    flash[:message] = "Team successfully created."
     redirect "/teams/#{@team.id}"
   end
 

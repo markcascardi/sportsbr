@@ -1,0 +1,6 @@
+<h1>All Sports</h1>
+
+<ul><% @sports.map do |sport| %>
+  <li><a href="/sports/<%= sport.id %>"><%= sport %></li>
+  <% end %>
+</ul>
