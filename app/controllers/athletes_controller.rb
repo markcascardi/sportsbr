@@ -19,7 +19,7 @@ class AthletesController < ApplicationController
     @title = "Create a New Athlete"
     erb :'/athletes/new'
   end
-  
+
   post '/athletes' do
     @athlete = Athlete.new(params[:athlete])
     @athlete.save
@@ -30,6 +30,7 @@ class AthletesController < ApplicationController
 
   get '/athletes/:id' do
     @athlete = Athlete.find_by(id: params[:id])
+    @user_note = UserNote.where(user_id: current_user&.id, athlete_id: @athlete.id).first || UserNote.new
 
     erb :'/athletes/show'
   end

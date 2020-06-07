@@ -20,9 +20,16 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      User.find(session[:user_id])
+      User.find_by(id: session[:user_id])
     end
 
+    # def current_user_athlete_note
+    #   if UserNote.where(user_id: current_user.id, athlete_id: @athlete.id).first.to_s == nil
+    #     "Add a note!"
+    #   else
+    #     UserNote.where(user_id: current_user.id, athlete_id: params[:user_note][:athlete_id]).first.to_s
+    #   end
+    # end
     # post '/user_notes' do
     #   @user_note = params[:user_note]
     #   binding.pry
