@@ -3,8 +3,8 @@ Sport.destroy_all
 Athlete.destroy_all
 Team.destroy_all
 
-fall_spring_seasons = ["2015", "2016", "2017", "2018", "2019", "2020", "2021"]
-winter_seasons = ["2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020", "2020-2021"]
+fall_spring_seasons = ["2015", "2016", "2017", "2018", "2019"]
+winter_seasons = ["2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020"]
 
 fall_spring_sports = [["Baseball", "M"], ["Football", "M"], ["Golf", "M"], ["Lacrosse", "M"], ["Soccer", "M"], ["Tennis", "M"], ["Field Hockey", "W"], ["Golf", "W"], ["Lacrosse", "W"], ["Rowing", "W"], ["Soccer", "W"], ["Softball", "W"], ["Tennis", "W"], ["Volleyball", "W"]]
 winter_sports = [["Basketball", "M"], ["Track & Field", "M"], ["Wrestling", "M"], ["Basketball", "W"], ["Track & Field", "W"]]

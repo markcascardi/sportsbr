@@ -1,18 +1,22 @@
-<h1>Edit <%= @team %></h1>
+<form action="/teams" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <p>
+    <label for="team_sport_id">Choose a Sport</label>
+    <select id="team_sport_id" name="team[sport_id]">
+      <% Sport.all.each do |sport| %>
+        <option value="<%= sport.id %>"><%= sport %></option>
+      <% end %>
+    </select>
+  </p>
 
-<form action="/teams/<%= @team.id %>" method="post">
-<input id="hidden" type="hidden" name="_method" value="patch">
-  <select>
-  <% Sport.all.each do |sport| %>
-    <option value="<%= sport.id %>"><%= sport.name %></option><br>
-  <% end %><br><br>
-  </select><br><br>
-  <input id="Men's" type="radio" name="sports[gender]" value="Men's">Men's</input><br><br>
-  <input id="Women's" type="radio" name="sports[gender]" value="Women's">Women's</input><br><br>
-  <select>
-  <% Season.all.each do |season| %>
-    <option value="<%= season.id %>"><%= season.name %></option><br>
-  <% end %><br><br>
-  </select><br><br>
-  <input type="submit" value="Edit <%= @team %>">
+  <p>
+    <label for="team_season_id">Choose a Season</label>
+    <select id="team_season_id" name="team[season_id]">
+      <% Season.all.each do |season| %>
+        <option value="<%= season.id %>"><%= season %></option>
+      <% end %>
+    </select>
+  </p>
+
+  <input type="submit" value="Edit Team">
 </form>

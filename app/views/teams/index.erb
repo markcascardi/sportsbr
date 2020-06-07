@@ -1,4 +1,6 @@
-<h1>All Teams</h1>
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
 
 <ul><% @teams.map do |team| %>
   <li><a href="/teams/<%= team.id %>"><%= team %></li>

@@ -1,9 +1,7 @@
-require 'rack-flash'
-
 class TeamsController < ApplicationController
-  use Rack::Flash
 
   get '/teams' do
+    @title = "All Teams"
     @teams = Team.all
 
     erb :'/teams/index'
@@ -11,6 +9,17 @@ class TeamsController < ApplicationController
 
   get '/teams/new' do
     erb :'/teams/new'
+  end
+
+  get '/teams/current' do
+    @title = "This Year's Team's"
+    sports = Sport.all
+    @teams = sports.map { |sport| sport.teams.last }
+
+
+    # @teams = Team.where(season: Season.where(name: "2019-2020"))
+
+    erb :'/teams/index'
   end
 
   post '/teams' do
@@ -28,6 +37,7 @@ class TeamsController < ApplicationController
   end
 
   get '/teams/:id/edit' do
+    @title = "Edit Team"
     @team = Team.find_by(id: params[:id])
 
     erb :'/teams/edit'
@@ -36,11 +46,9 @@ class TeamsController < ApplicationController
   patch '/teams/:id' do
     @team = Team.find_by(id: params[:id])
     @team.update(params[:team])
-    # @team.artist = Artist.find_or_create_by(name: params[:artist][:name])
-    # @team.genre_ids = params[:genres]
     @team.save
 
-    # flash[:message] = "Successfully updated team."
+    flash[:message] = "Successfully updated team."
     redirect "/teams/#{@team.id}"
   end
 end

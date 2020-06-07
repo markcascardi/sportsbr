@@ -1,3 +1,118 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
+  <div class="row">
+    <form action="/athletes" method="post" class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+            <label for="team_id">Choose a Team</label>
+            <select id="team_id" name="athlete[team_id]">
+              <% Team.all.each do |team| %>
+                <option value="<%= team.id %>"><%= team %></option>
+              <% end %>
+            </select>
+          </p>
+        </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+            <label for="firstname">First Name</label>
+            <input placeholder="First Name"id="firstname" type="text" class="validate" name="athlete[firstname]">
+          </p>
+        </div>
+        <div class="input-field col s6">
+          <p>
+            <label for="lastname">Last Name</label>
+            <input placeholder="Last Name" id="lastname" type="text" class="validate" name="athlete[lastname]">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+            <label for="birthdate">Birthday:</label>
+            <input type="date" id="birthdate" name="athlete[birthdate]">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+            <label for="number">Number</label>
+            <input placeholder="Number" id="number" type="text" class="validate" name="athlete[number]">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+            <label for="year">Fr</label>
+            <input placeholder="Year" id="year" type="checkbox" class="validate" name="athlete[year]">
+            <label for="year">So</label>
+            <input placeholder="Year" id="year" type="checkbox" class="validate" name="athlete[year]">
+            <label for="year">Jr</label>
+            <input placeholder="Year" id="year" type="checkbox" class="validate" name="athlete[year]">
+            <label for="year">Sr</label>
+            <input placeholder="Year" id="year" type="checkbox" class="validate" name="athlete[year]">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+            <label for="height">Height</label>
+            <input placeholder="Height" id="height" type="text" class="validate" name="athlete[height]">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+            <label for="weight">Weight</label>
+            <input placeholder="Weight" id="weight" type="text" class="validate" name="athlete[weight]">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+            <label for="city">City</label>
+            <input placeholder="City" id="city" type="text" class="validate" name="athlete[city]">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+           <label for="state">State</label>
+            <select id="state" name="athlete[state]">
+              <option value="---">---</option><option value="Alabama">Alabama</option><option value="Alaska">Alaska</option><option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option><option value="California">California</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Delaware">Delaware</option><option value="District of Columbia">District of Columbia</option><option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Guam">Guam</option><option value="Hawaii">Hawaii</option><option value="Idaho">Idaho</option><option value="Illinois">Illinois</option><option value="Indiana">Indiana</option><option value="Iowa">Iowa</option><option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option><option value="Louisiana">Louisiana</option><option value="Maine">Maine</option><option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option><option value="Michigan">Michigan</option><option value="Minnesota">Minnesota</option><option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option><option value="Montana">Montana</option><option value="Nebraska">Nebraska</option><option value="Nevada">Nevada</option><option value="New Hampshire">New Hampshire</option><option value="New Jersey">New Jersey</option><option value="New Mexico">New Mexico</option><option value="New York">New York</option><option value="North Carolina">North Carolina</option><option value="North Dakota">North Dakota</option><option value="Northern Marianas Islands">Northern Marianas Islands</option><option value="Ohio">Ohio</option><option value="Oklahoma">Oklahoma</option><option value="Oregon">Oregon</option><option value="Pennsylvania">Pennsylvania</option><option value="Puerto Rico">Puerto Rico</option><option value="Rhode Island">Rhode Island</option><option value="South Carolina">South Carolina</option><option value="South Dakota">South Dakota</option><option value="Tennessee">Tennessee</option><option value="Texas">Texas</option><option value="Utah">Utah</option><option value="Vermont">Vermont</option><option value="Virginia">Virginia</option><option value="Virgin Islands">Virgin Islands</option><option value="Washington">Washington</option><option value="West Virginia">West Virginia</option><option value="Wisconsin">Wisconsin</option><option value="Wyoming">Wyoming</option>
+            </select>
+          </p>
+         </div>
+       </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+            <label for="high_school">High School</label>
+            <input placeholder="High School" id="high_school" type="text" class="validate" name="athlete[high_school]">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <p>
+            <label for="ig_handle">Instagram Handle</label>
+            <input placeholder="Instagram Handle" id="ig_handle" type="text" class="validate" name="athlete[ig_handle]">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <p>
+            <label for="biography">Biography</label><br>
+            <textarea placeholder="Biography" id="textarea1" class="materialize-textarea" name="athlete[biography]"></textarea>
+          </p>
+        </div>
+      </div>
+        <input type="submit" value="Create Athlete">
+    </form>
+  </div>

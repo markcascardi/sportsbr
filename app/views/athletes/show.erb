@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h1>Home Page for <%= @athlete.firstname %>   <%= @athlete.lastname %></h1>
 <ul>
   <li><a href="/teams/<%= @athlete.team.id %>"><%= @athlete.team %></a> - <%= @athlete.year %> - No. <%= @athlete.number %></li>
@@ -9,3 +13,21 @@
   <li>Instagram: <a href="https://www.instagram.com/<%= @athlete.ig_handle %>/" target="_blank"><%= @athlete.ig_handle %></li></a>
   <li>Bio: <%= @athlete.biography %></li>
 </ul>
+
+<% if current_user %>
+<p>
+  <div class="row">
+    <form action="/user_notes" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+        <p>
+          <label for="user_notes"><%= current_user.name %>'s Notes for <%= @athlete %></label><br>
+          <textarea placeholder="Notes" id="user_notes" class="materialize-textarea" name="user_note[note]"></textarea>
+        </p>
+      </div>
+    </div>
+  <input type="submit" value="Update Notes"> - or - <a href="/athletes/<%= @athlete.id %>/edit">Click here to edit athlete</a>
+</p>
+<% else %>
+  <p><a href="/login">Log in</a>or <a href="/signup">Sign up</a> to add notes on your favorite players.</p>
+<% end %>

@@ -14,10 +14,24 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a href="/teams/current">Teams</a>
+      <a href="/athletes?current=true">Athletes</a>
+      <a href="/sports">Sports</a>
+      <a href="/teams">Archives</a>
+      <% if logged_in? %>
+      <a href="/logout">Log Out</a>
+      <% else %>
+      <a href="/login">Log In</a>
+      <% end %>
+    </div>
+
     <div class="wrapper">
       <% if flash.has?(:message) %>
         <%= flash[:message] %>
       <% end %>
+      <h1><%= @title %></h1><br>
 
       <%= yield %>
 

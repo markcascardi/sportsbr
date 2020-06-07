@@ -11,9 +11,10 @@ class SessionsController < ApplicationController
   	if @user && @user.authenticate(params[:password])
     	session[:user_id] = @user.id
 
-			redirect to "/teams"
+      flash[:message] = "You are logged in!"
+			redirect to "/athletes?current=true"
 		else
-      # flash[:message] = "Log in failed"
+      flash[:message] = "Log in failed"
 			redirect "/login"
 		end
   end
@@ -26,13 +27,14 @@ class SessionsController < ApplicationController
     @user = User.create(name: params[:name], email: params[:email], password: params[:password])
     session[:user_id] = @user.id
 
-    # flash[:message] = "Welcome to Sports <br>"
+    flash[:message] = "Welcome!"
     redirect to "/login"
   end
 
-  get '/sessions/logout' do
+  get '/logout' do
     session.clear
-    redirect '/teams'
+    flash[:message] = "You have been logged out."
+    redirect '/login'
   end
 
 end
