@@ -1,7 +1,3 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
-
 <ul><% @athletes.map do |athlete| %>
   <li><a href="/athletes/<%= athlete.id%>""><%= athlete.number %> - <%= athlete.firstname %> <%= athlete.lastname %> - <%= athlete.city %>, <%= athlete.state %></a>
     <% end %>

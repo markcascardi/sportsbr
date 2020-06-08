@@ -1,0 +1,10 @@
+<ul><% @user_notes.map do |note| %>
+  <li><a href="/athletes/<%= note.athlete.id %>""><%= note.athlete.firstname %> <%= note.athlete.lastname %>:</a>
+  <h5><%= note %></h5><br>
+    <form action="/user_notes/<%= note.id %>" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="delete note">
+    </form>
+    <br>
+    <% end %>
+</ul>

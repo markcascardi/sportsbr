@@ -1,8 +1,5 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
-
-<ul><% @teams.map do |team| %>
-  <li><a href="/teams/<%= team.id %>"><%= team %></li>
+<ul>
+  <% @teams.map do |team| %>
+    <li><a href="/teams/<%= team.id %>"><%= team %></li>
   <% end %>
 </ul>

@@ -1,3 +1,5 @@
+use Rack::MethodOverride
+
 class TeamsController < ApplicationController
 
   get '/teams' do
@@ -16,9 +18,6 @@ class TeamsController < ApplicationController
     sports = Sport.all
     @teams = sports.map { |sport| sport.teams.last }
 
-
-    # @teams = Team.where(season: Season.where(name: "2019-2020"))
-
     erb :'/teams/index'
   end
 
@@ -26,7 +25,7 @@ class TeamsController < ApplicationController
     @team = Team.new(params[:team])
     @team.save
 
-    flash[:message] = "Team successfully created."
+    flash[:notice] = "Team successfully created."
     redirect "/teams/#{@team.id}"
   end
 
@@ -48,7 +47,7 @@ class TeamsController < ApplicationController
     @team.update(params[:team])
     @team.save
 
-    flash[:message] = "Successfully updated team."
+    flash[:notice] = "Successfully updated team."
     redirect "/teams/#{@team.id}"
   end
 end

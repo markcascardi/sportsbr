@@ -1,4 +1,4 @@
-require 'rack-flash'
+use Rack::MethodOverride
 
 class AthletesController < ApplicationController
 
@@ -24,7 +24,7 @@ class AthletesController < ApplicationController
     @athlete = Athlete.new(params[:athlete])
     @athlete.save
 
-    flash[:message] = "Athlete successfully created."
+    flash[:notice] = "Athlete successfully created."
     redirect "/athletes/#{@athlete.id}"
   end
 
@@ -48,7 +48,7 @@ class AthletesController < ApplicationController
     # @athlete.genre_ids = params[:genres]
     @athlete.save
 
-    flash[:message] = "Successfully updated athlete."
+    flash[:notice] = "Successfully updated athlete."
     redirect "/athletes/#{@athlete.id}"
   end
 end

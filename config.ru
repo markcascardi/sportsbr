@@ -10,6 +10,5 @@ use AthletesController
 use TeamsController
 use UsersController
 use SessionsController
-# use Rack::Flash
 use Rack::MethodOverride
 run ApplicationController

@@ -1,10 +1,6 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
-
 <% if logged_in? %>
-<h1>Welcome, <%= current_user.name %>!</h1>
-<br><br>
+  <h1>Welcome, <%= current_user.name %>!</h1>
+  <br><br>
 <% else %>
 <h3>Login</h3>
   <form action="/login" method="POST">
@@ -14,5 +10,7 @@
   </form><br>
 
 <h5>New to our site?</h5>
-<p><a href="/signup">Click here to sign up!</a></p>
-<%end%>
+  <p>
+    <a href="/signup">Click here to sign up!</a>
+  </p>
+<% end %>

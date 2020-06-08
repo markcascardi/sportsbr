@@ -1,4 +1,4 @@
-require 'rack-flash'
+use Rack::MethodOverride
 
 class SessionsController < ApplicationController
 
@@ -11,11 +11,11 @@ class SessionsController < ApplicationController
   	if @user && @user.authenticate(params[:password])
     	session[:user_id] = @user.id
 
-      flash[:message] = "You are logged in!"
-			redirect to "/athletes?current=true"
+      flash[:notice] = "You are logged in!"
+			redirect to "/users/#{current_user.id}"
 		else
-      flash[:message] = "Log in failed"
-			redirect "/login"
+      flash[:notice] = "Log in failed"
+			redirect to "/login"
 		end
   end
 
@@ -24,17 +24,23 @@ class SessionsController < ApplicationController
   end
 
   post "/signup" do
-    @user = User.create(name: params[:name], email: params[:email], password: params[:password])
+    @user = User.new(name: params[:name], email: params[:email], password: params[:password])
     session[:user_id] = @user.id
+    @user.save
 
-    flash[:message] = "Welcome!"
-    redirect to "/login"
+    if @user.save
+      flash[:notice] = "Welcome!"
+      redirect to "/login"
+    else
+      flash[:notice] = "Sign up falied"
+      redirect to "/signup"
+    end
   end
 
   get '/logout' do
-    session.clear
-    flash[:message] = "You have been logged out."
-    redirect '/login'
-  end
+    session[:user_id] =nil
 
+    flash[:notice] = "You have been logged out."
+    redirect to '/login'
+  end
 end

@@ -1,5 +1,12 @@
 <h1><%= @team %></h1>
-<ul><% @team.athletes.map do |athlete| %>
-  <li><a href="/athletes/<%= athlete.id%>""><%= athlete.number %> - <%= athlete.firstname %> <%= athlete.lastname %> - <%= athlete.city %>, <%= athlete.state %></a>
-    <% end %>
-</ul>
+  <ul>
+    <% @team.athletes.map do |athlete| %>
+    <li><a href="/athletes/<%= athlete.id%>""><%= athlete.number %> - <%= athlete.firstname %> <%= athlete.lastname %> - <%= athlete.city %>, <%= athlete.state %></a>
+      <% end %>
+  </ul>
+<br>
+<% if logged_in? %>
+  <p>
+    <a href="/teams/<%= @team.id %>/edit">Click here to edit a team</a>
+  </p>
+<% end %>

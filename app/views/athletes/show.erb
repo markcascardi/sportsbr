@@ -1,8 +1,4 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
-
-<h1>Home Page for <%= @athlete.firstname %>   <%= @athlete.lastname %></h1>
+<h1>Home Page for <%= @athlete.firstname %> <%= @athlete.lastname %></h1>
 <ul>
   <li><a href="/teams/<%= @athlete.team.id %>"><%= @athlete.team %></a> - <%= @athlete.year %> - No. <%= @athlete.number %></li>
   <li>Date of Birth: <%= @athlete.birthdate %></li>
@@ -17,38 +13,28 @@
 <% if logged_in? %>
   <p>
     <div class="row">
-      <% if @user_note.id %>
-      <h1>if</h1>
-        <form action="/user_notes" method="post">
-          <input id="hidden" type="hidden" name="_method" value="put">
-          <div class="row">
-            <div class="input-field col s12">
-              <p>
-                <label for="user_notes"><%= current_user.name %>'s Notes for <%= @athlete %></label><br>
-                <textarea placeholder="Notes" id="user_notes" class="materialize-textarea" name="user_note[note]" value="<%= @user_note.to_s %>"><%= @user_note.to_s %></textarea>
-                <input id="hidden" type="hidden" name="user_note[athlete_id]" value="<%= @athlete.id %>">
-              </p>
-            </div>
+      <form action="/user_notes" method="post">
+        <input id="hidden" type="hidden" name="_method" value="put">
+        <div class="row">
+          <div class="input-field col s12">
+            <p>
+              <label for="user_notes"><%= current_user.name %>'s Notes for <%= @athlete %></label><br>
+              <textarea placeholder="add a note here!" id="user_notes" class="materialize-textarea" name="user_note[note]" value="<%= @user_note.to_s %>"><%= @user_note.to_s %></textarea>
+              <input id="hidden" type="hidden" name="user_note[athlete_id]" value="<%= @athlete.id %>">
+            </p>
           </div>
-          <input type="submit" value="Update Notes"> - or - <a href="/athletes/<%= @athlete.id %>/edit">Click here to edit athlete</a>
-        </form>
-      <% else %>
-      <h1>else</h1>
-        <form action="/user_notes" method="post">
-          <div class="row">
-            <div class="input-field col s12">
-              <p>
-                <label for="user_notes"><%= current_user.name %>'s notes for <%= @athlete %></label><br>
-                <textarea placeholder="Add Notes Here" id="user_notes" class="materialize-textarea" name="user_note[note]" value="<%= @user_note.to_s %>"><%= @user_note.to_s %></textarea>
-                <input id="hidden" type="hidden" name="user_note[athlete_id]" value="<%= @athlete.id %>">
-              </p>
-            </div>
-          </div>
-          <input type="submit" value="Create Notes"> - or - <a href="/athletes/<%= @athlete.id %>/edit">Click here to edit athlete</a>
-        </form>
-      <% end %>
+        </div>
+        <% if @user_note.id %>
+          <input type="submit" value="Update Note"> - or - <a href="/athletes/<%= @athlete.id %>/edit">Click here to edit athlete</a>
+        <% else %>
+          <input type="submit" value="Create Note"> - or - <a href="/athletes/<%= @athlete.id %>/edit">Click here to edit athlete</a>
+        <% end %>
+      </form>
     </div>
   </p>
 <% else %>
-  <p><a href="/login">Log in</a> or <a href="/signup">Sign up</a> to add notes on your favorite players.</p>
+  <br><br>
+  <p>
+    <a href="/login">Log in</a> or <a href="/signup">Sign up</a> to add notes on your favorite players.
+  </p>
 <% end %>
