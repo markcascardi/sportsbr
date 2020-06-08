@@ -10,6 +10,6 @@ class SportsController < ApplicationController
   get '/sports/:id' do
     @sport = Sport.find_by(id: params[:id])
 
-    erb :"/sports/#{@sport.id}"
+    erb :'/sports/show'
   end
 end
